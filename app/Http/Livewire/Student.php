@@ -31,14 +31,14 @@ class Student extends Component
             'department' => 'required',
         ]);
 
-        Student::create($validatedData);
+        ModelsStudent::create($validatedData);
 
         $this->resetInputFields();
     }
 
     public function edit($id)
     {
-        $student = Student::findOrFail($id);
+        $student = ModelsStudent::findOrFail($id);
 
         $this->name = $student->name;
         $this->grade = $student->grade;
@@ -53,14 +53,14 @@ class Student extends Component
             'department' => 'required',
         ]);
 
-        Student::findOrFail($id)->update($validatedData);
+        ModelsStudent::findOrFail($id)->update($validatedData);
 
         $this->resetInputFields();
     }
 
     public function delete($id)
     {
-        Student::findOrFail($id)->delete();
+        ModelsStudent::findOrFail($id)->delete();
     }
 
     private function resetInputFields()

@@ -10,6 +10,8 @@ class Student extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'grade', 'department'];
+
     public static function getStudents()
     {
         $cacheKey = 'students.all'; // Unique key to identify the cached result
