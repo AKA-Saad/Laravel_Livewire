@@ -14,7 +14,13 @@ class Student extends Component
     public $name;
     public $grade;
     public $department;
+    public $isVisible = false;
 
+    public function toggleVisibility()
+    {
+        $this->isVisible = !$this->isVisible;
+    }
+    
     public function render()
     {
         $this->students = ModelsStudent::getStudents();
