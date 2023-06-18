@@ -32,7 +32,7 @@
                             <tr>
                                 <td class="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
                                     <div class="flex items-center">
-                                        <button type="button" wire:click="upload({{ $student->id }}) class=" h-11 w-11 flex-shrink-0">
+                                        <button type="button" wire:click="upload({{ $student->id }})" class="h-11 w-11 flex-shrink-0 focus:ring-blue-500 focus:ring-opacity-100">
                                             @if ($student->image_path)
                                             <img  class="h-11 w-11 rounded-full" src="{{ Storage::url($student->image_path) }}" alt="Student Image">
                                             @else
@@ -163,13 +163,5 @@
     </div>
     @endif
 
-
-
-
-
-
-    <!-- image uploader -->
-    <livewire:student-image-uploader />
-    <!-- End here -->
 
 </div>
