@@ -7,4 +7,5 @@
     @if (session()->has('message'))
         <div class="success">{{ session('message') }}</div>
     @endif
+    
 </div>
