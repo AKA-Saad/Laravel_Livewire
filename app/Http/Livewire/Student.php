@@ -17,6 +17,7 @@ class Student extends Component
 
     public function render()
     {
+        dd(ModelsStudent::getStudents());
         $this->students = ModelsStudent::all();
         return view('livewire.student', [
             'students' => $this->students,

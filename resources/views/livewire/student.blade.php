@@ -12,31 +12,35 @@
         <button type="submit">Save</button>
     </form>
 
+    <!-- image uploader -->
+    <livewire:student-image-uploader />
+    <!-- End here -->
+
     @if ($students->isEmpty())
-        <p>No student found</p>
+    <p>No student found</p>
     @else
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Grade</th>
-                    <th>Department</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($students as $student)
-                    <tr>
-                        <td>{{ $student->name }}</td>
-                        <td>{{ $student->grade }}</td>
-                        <td>{{ $student->department }}</td>
-                        <td>
-                            <button wire:click="edit({{ $student->id }})">Edit</button>
-                            <button wire:click="delete({{ $student->id }})">Delete</button>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Grade</th>
+                <th>Department</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($students as $student)
+            <tr>
+                <td>{{ $student->name }}</td>
+                <td>{{ $student->grade }}</td>
+                <td>{{ $student->department }}</td>
+                <td>
+                    <button wire:click="edit({{ $student->id }})">Edit</button>
+                    <button wire:click="delete({{ $student->id }})">Delete</button>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
     @endif
 </div>

@@ -14,11 +14,11 @@ class Student extends Model
 
     public static function getStudents()
     {
-        $cacheKey = 'students.all'; // Unique key to identify the cached result
+        $cacheKey = 'students'; // Unique key to identify the cached result
         $minutes = 5;
 
         return Cache::remember($cacheKey, $minutes, function () {
-            return self::all();
+            return self::get();
         });
     }
 
