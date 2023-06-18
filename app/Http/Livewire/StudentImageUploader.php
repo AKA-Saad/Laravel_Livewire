@@ -24,8 +24,6 @@ class StudentImageUploader extends Component
 
         $path = $this->image->store('public/images');
 
-        \Log::info($path);
-
         // Save the path to the student's image in the database or perform any other necessary actions
 
         session()->flash('message', 'Image uploaded successfully.');

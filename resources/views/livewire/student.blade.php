@@ -48,7 +48,7 @@
                                     {{ $student->department }}
                                 </td>
                                 <td class="relative whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                                    <button type="button" class="rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" wire:click="edit({{ $student->id }})">Edit</button>
+                                    <button type="button" class="rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" wire:click="edit({{ $student->id }})"> Edit </button>
                                     <button type="button" class="rounded-md bg-red-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600" wire:click="delete({{ $student->id }})">Delete</button>
                                 </td>
                             </tr>
@@ -104,7 +104,11 @@
                                 </div>
                             </div>
                             <div class="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
-                                <button type="submit" class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:col-start-2">Save</button>
+                                @if($isEdit)
+                                <button  wire:click="update({{ $currentStudent }})" class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:col-start-2"> Update </button>
+                                @else
+                                <button type="submit" class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:col-start-2"> Save </button>
+                                @endif
                                 <button type="button" wire:click="toggleVisibility" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:col-start-1 sm:mt-0">Cancel</button>
                             </div>
                         </div>
@@ -117,35 +121,6 @@
 
 
 
-
-
-    @if ($students->isEmpty())
-    <p>No student found</p>
-    @else
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Grade</th>
-                <th>Department</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($students as $student)
-            <tr>
-                <td>{{ $student->name }}</td>
-                <td>{{ $student->grade }}</td>
-                <td>{{ $student->department }}</td>
-                <td>
-                    <button wire:click="edit({{ $student->id }})">Edit</button>
-                    <button wire:click="delete({{ $student->id }})">Delete</button>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-    @endif
 
 
 

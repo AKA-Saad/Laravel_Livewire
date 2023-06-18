@@ -10,17 +10,20 @@ use Livewire\Component;
 class Student extends Component
 {
 
+    public $currentStudent = null;
     public $students;
     public $name;
     public $grade;
     public $department;
+    public $isEdit = false;
     public $isVisible = false;
 
     public function toggleVisibility()
     {
+        $this->isEdit = false;
         $this->isVisible = !$this->isVisible;
     }
-    
+
     public function render()
     {
         $this->students = ModelsStudent::getStudents();
@@ -40,6 +43,7 @@ class Student extends Component
         ModelsStudent::create($validatedData);
 
         $this->resetInputFields();
+        $this->isVisible = !$this->isVisible;
     }
 
     public function edit($id)
@@ -50,6 +54,9 @@ class Student extends Component
         $this->name = $student->name;
         $this->grade = $student->grade;
         $this->department = $student->department;
+        $this->isVisible = !$this->isVisible;
+        $this->isEdit = true;
+        $this->currentStudent = $id;
     }
 
     public function update($id)
@@ -63,6 +70,7 @@ class Student extends Component
         ModelsStudent::findOrFail($id)->update($validatedData);
 
         $this->resetInputFields();
+        $this->isVisible = !$this->isVisible;
     }
 
     public function delete($id)
