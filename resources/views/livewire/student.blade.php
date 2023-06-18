@@ -32,9 +32,14 @@
                             <tr>
                                 <td class="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
                                     <div class="flex items-center">
-                                        <div class="h-11 w-11 flex-shrink-0">
+                                        <button type="button" wire:click="upload({{ $student->id }}) class=" h-11 w-11 flex-shrink-0">
+                                            @if ($student->image_path)
+                                            <img  class="h-11 w-11 rounded-full" src="{{ Storage::url($student->image_path) }}" alt="Student Image">
+                                            @else
                                             <img class="h-11 w-11 rounded-full" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="">
-                                        </div>
+                                            @endif
+
+                                        </button>
                                         <div class="ml-4">
                                             <div class="font-medium text-gray-900">{{ $student->name }}</div>
                                             <div class="mt-1 text-gray-500">{{ $student->name }}@example.com</div>
@@ -105,7 +110,7 @@
                             </div>
                             <div class="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
                                 @if($isEdit)
-                                <button  wire:click="update({{ $currentStudent }})" class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:col-start-2"> Update </button>
+                                <button wire:click="update({{ $currentStudent }})" class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:col-start-2"> Update </button>
                                 @else
                                 <button type="submit" class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:col-start-2"> Save </button>
                                 @endif
@@ -120,6 +125,43 @@
     <!-- end here -->
 
 
+    @if($uploadImageFlag)
+    <div>
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75transition-opacity"></div>
+        <div">
+            <div class="fixed inset-0  z-10 overflow-y-auto">
+                <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                    <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
+                        <div>
+                            <div class="mt-3 text-left sm:mt-5">
+                                <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Upload Image </h3>
+                                <div class="mb-4">
+                                    <div class="mt-10 text-center grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                                        <div class="sm:col-span-4">
+                                            <div>
+                                                <input type="file" wire:model="image">
+                                                @error('image') <span class="error">{{ $message }}</span> @enderror
+
+                                                @if (session()->has('message'))
+                                                <div class="success">{{ session('message') }}</div>
+                                                @endif
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
+                                <button wire:click="imageUploaded" class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:col-start-2"> Uplaod </button>
+                                <button type="button" wire:click="toggleUpload" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:col-start-1 sm:mt-0">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    @endif
 
 
 
