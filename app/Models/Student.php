@@ -23,10 +23,4 @@ class Student extends Model
     }
 
 
-    public static function createStudent($data)
-    {
-        // Create the student record
-
-        Cache::forget('students'); // Clear the cache
-    }
 }

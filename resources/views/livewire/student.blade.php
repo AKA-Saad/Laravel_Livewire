@@ -34,7 +34,7 @@
                                     <div class="flex items-center">
                                         <button type="button" wire:click="upload({{ $student->id }})" class="h-11 w-11 flex-shrink-0 focus:ring-blue-500 focus:ring-opacity-100">
                                             @if ($student->image_path)
-                                            <img  class="h-11 w-11 rounded-full" src="{{ Storage::url($student->image_path) }}" alt="Student Image">
+                                            <img class="h-11 w-11 rounded-full" src="{{ Storage::url($student->image_path) }}" alt="Student Image">
                                             @else
                                             <img class="h-11 w-11 rounded-full" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="">
                                             @endif
@@ -161,7 +161,8 @@
                 </div>
             </div>
     </div>
-    @endif
+</div>
+@endif
 
 
 </div>
