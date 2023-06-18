@@ -17,8 +17,7 @@ class Student extends Component
 
     public function render()
     {
-        dd(ModelsStudent::getStudents());
-        $this->students = ModelsStudent::all();
+        $this->students = ModelsStudent::getStudents();
         return view('livewire.student', [
             'students' => $this->students,
         ]);
@@ -39,6 +38,7 @@ class Student extends Component
 
     public function edit($id)
     {
+
         $student = ModelsStudent::findOrFail($id);
 
         $this->name = $student->name;
@@ -69,36 +69,5 @@ class Student extends Component
         $this->name = '';
         $this->grade = '';
         $this->department = '';
-    }
-
-    public function upload($field, $file, $load, $error, $progress)
-    {
-        // Validate the uploaded file
-        $this->validate([
-            $field => 'image|max:1024', // Example validation rules
-        ]);
-
-        // Store the uploaded file and get the file path
-        $filePath = $file->store('student-images', 'public');
-
-        // Perform additional processing if needed (e.g., resizing, cropping, etc.)
-
-        // Update the image property with the file path
-        $this->image = $filePath;
-
-        // Signal FilePond that the file upload is complete
-        $load($filePath);
-    }
-
-    public function removeUpload($field, $filename, $load)
-    {
-        // Delete the file from storage
-        Storage::disk('public')->delete($filename);
-
-        // Clear the image property
-        $this->image = null;
-
-        // Signal FilePond that the file removal is complete
-        $load();
     }
 }

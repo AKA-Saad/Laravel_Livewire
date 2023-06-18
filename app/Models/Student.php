@@ -27,6 +27,6 @@ class Student extends Model
     {
         // Create the student record
 
-        Cache::forget('students.all'); // Clear the cache
+        Cache::forget('students'); // Clear the cache
     }
 }
