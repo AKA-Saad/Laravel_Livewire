@@ -36,7 +36,7 @@ class Student extends Component
 
     public function render()
     {
-        $this->students = ModelsStudent::getStudents();
+        $this->students = ModelsStudent::all();
         return view('livewire.student', [
             'students' => $this->students,
         ]);
